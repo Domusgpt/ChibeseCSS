@@ -1,0 +1,7 @@
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Security-Policy = "default-src 'self' cdnjs.cloudflare.com fonts.googleapis.com 'unsafe-eval' 'unsafe-inline'; script-src 'self' cdnjs.cloudflare.com 'unsafe-eval'; style-src 'self' 'unsafe-inline' fonts.googleapis.com;"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin"
+    Permissions-Policy = "accelerometer=(), gyroscope=()"

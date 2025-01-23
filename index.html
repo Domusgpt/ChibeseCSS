@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Clear Seas Solutions | AI Architecture</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-turquoise: #00f3ff;
+            --neon-purple: #bc13fe;
+            --cyber-black: #0a0a0f;
+        }
+
+        @viewport {
+            width: device-width;
+            zoom: 1.0;
+            min-zoom: 1.0;
+            max-zoom: 1.0;
+            user-zoom: fixed;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            color: white;
+            background: var(--cyber-black);
+            overflow-x: hidden;
+            touch-action: pan-y;
+            height: 100vh;
+            width: 100vw;
+            margin: 0;
+        }
+
+        /* ... (keep all previous CSS styles unchanged) ... */
+    </style>
+</head>
+<body>
+    <div id="preloader" class="cyber-load">
+        <div class="loader-text">INITIALIZING QUANTUM ARCHITECTURE</div>
+        <div class="loader-bar"></div>
+    </div>
+
+    <canvas id="particle-canvas"></canvas>
+    
+    <main id="sections-container">
+        <section class="cyber-section" data-section="1">
+            <div class="hologram-grid"></div>
+            <div class="quantum-border"></div>
+            <h2 class="cyber-title">Architecting Tomorrow</h2>
+            <p class="cyber-text">Quantum AI systems redefining spatial intelligence through neural topology mapping.</p>
+        </section>
+
+        <section class="cyber-section" data-section="2">
+            <div class="hologram-grid"></div>
+            <div class="quantum-border"></div>
+            <h2 class="cyber-title">Synaptic Networks</h2>
+            <p class="cyber-text">Self-optimizing architectural patterns powered by neuromorphic computing cores.</p>
+        </section>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stats.js/r16/Stats.min.js"></script>
+    <script>
+        // iOS Touch Initialization Fix
+        document.addEventListener('touchstart', function() {}, { passive: true });
+    </script>
+    <script src="scripts.js"></script>
+</body>
+</html>
