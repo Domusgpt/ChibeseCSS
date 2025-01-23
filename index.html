@@ -12,12 +12,10 @@
             --cyber-black: #0a0a0f;
         }
 
-        @viewport {
-            width: device-width;
-            zoom: 1.0;
-            min-zoom: 1.0;
-            max-zoom: 1.0;
-            user-zoom: fixed;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
@@ -25,45 +23,174 @@
             color: white;
             background: var(--cyber-black);
             overflow-x: hidden;
-            touch-action: pan-y;
             height: 100vh;
-            width: 100vw;
-            margin: 0;
+            touch-action: pan-y;
         }
 
-        /* ... (keep all previous CSS styles unchanged) ... */
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .section-container {
+            position: relative;
+            min-height: 100vh;
+            padding: 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .cyber-section {
+            background: rgba(10, 10, 15, 0.9);
+            padding: 3rem;
+            border-radius: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cyber-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 2px solid transparent;
+            border-radius: 1rem;
+            animation: border-glow 3s infinite;
+            mask: 
+                linear-gradient(#fff 0 0) content-box,
+                linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+        }
+
+        @keyframes border-glow {
+            0% {
+                border-image: linear-gradient(45deg, 
+                    var(--neon-turquoise),
+                    var(--neon-purple)) 1;
+                filter: drop-shadow(0 0 10px var(--neon-purple));
+            }
+            50% {
+                border-image: linear-gradient(135deg, 
+                    var(--neon-purple),
+                    var(--neon-turquoise)) 1;
+                filter: drop-shadow(0 0 20px var(--neon-turquoise));
+            }
+            100% {
+                border-image: linear-gradient(45deg, 
+                    var(--neon-turquoise),
+                    var(--neon-purple)) 1;
+                filter: drop-shadow(0 0 10px var(--neon-purple));
+            }
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            text-shadow: 0 0 15px var(--neon-turquoise),
+                         0 0 25px var(--neon-purple);
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            max-width: 600px;
+        }
+
+        @media (max-width: 768px) {
+            .section-container {
+                padding: 2rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            p {
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
-    <div id="preloader" class="cyber-load">
-        <div class="loader-text">INITIALIZING QUANTUM ARCHITECTURE</div>
-        <div class="loader-bar"></div>
-    </div>
-
-    <canvas id="particle-canvas"></canvas>
+    <canvas id="particles"></canvas>
     
-    <main id="sections-container">
-        <section class="cyber-section" data-section="1">
-            <div class="hologram-grid"></div>
-            <div class="quantum-border"></div>
-            <h2 class="cyber-title">Architecting Tomorrow</h2>
-            <p class="cyber-text">Quantum AI systems redefining spatial intelligence through neural topology mapping.</p>
-        </section>
-
-        <section class="cyber-section" data-section="2">
-            <div class="hologram-grid"></div>
-            <div class="quantum-border"></div>
-            <h2 class="cyber-title">Synaptic Networks</h2>
-            <p class="cyber-text">Self-optimizing architectural patterns powered by neuromorphic computing cores.</p>
-        </section>
+    <main>
+        <div class="section-container">
+            <section class="cyber-section">
+                <h1>Clear Seas Solutions</h1>
+                <p>Pioneering AI-Driven Architectural Innovation</p>
+            </section>
+        </div>
     </main>
 
+    <!-- Three.js from CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/stats.js/r16/Stats.min.js"></script>
+    
+    <!-- Main Script -->
     <script>
-        // iOS Touch Initialization Fix
-        document.addEventListener('touchstart', function() {}, { passive: true });
+        class ParticleSystem {
+            constructor() {
+                this.canvas = document.getElementById('particles');
+                this.renderer = new THREE.WebGLRenderer({
+                    canvas: this.canvas,
+                    antialias: true,
+                    alpha: true
+                });
+                this.scene = new THREE.Scene();
+                this.camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+                this.particles = new THREE.BufferGeometry();
+                
+                this.init();
+            }
+
+            init() {
+                // Renderer setup
+                this.renderer.setSize(window.innerWidth, window.innerHeight);
+                this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+                // Camera position
+                this.camera.position.z = 5;
+
+                // Create particles
+                const positions = new Float32Array(10000 * 3);
+                for(let i = 0; i < 10000; i++) {
+                    positions[i*3] = (Math.random() - 0.5) * 10;
+                    positions[i*3+1] = (Math.random() - 0.5) * 10;
+                    positions[i*3+2] = (Math.random() - 0.5) * 10;
+                }
+
+                this.particles.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+                
+                const material = new THREE.PointsMaterial({
+                    size: 0.1,
+                    color: 0x00f3ff,
+                    transparent: true,
+                    blending: THREE.AdditiveBlending
+                });
+
+                this.particleSystem = new THREE.Points(this.particles, material);
+                this.scene.add(this.particleSystem);
+
+                // Animation loop
+                this.animate();
+            }
+
+            animate() {
+                this.particleSystem.rotation.x += 0.001;
+                this.particleSystem.rotation.y += 0.0005;
+                this.renderer.render(this.scene, this.camera);
+                requestAnimationFrame(() => this.animate());
+            }
+        }
+
+        // Initialize particle system
+        new ParticleSystem();
+
+        // Mobile touch fix
+        document.addEventListener('touchstart', () => {}, { passive: true });
     </script>
-    <script src="scripts.js"></script>
 </body>
 </html>
