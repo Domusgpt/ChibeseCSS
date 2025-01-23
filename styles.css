@@ -118,6 +118,27 @@ body {
     animation: core-spin 4s linear infinite;
 }
 
+.portal-interface {
+    position: absolute;
+    width: 300px;
+    height: 400px;
+    background: rgba(0, 0, 0, 0.9);
+    border: 2px solid var(--quantum-blue);
+    border-radius: 10px;
+    padding: 20px;
+    display: none;
+    transform: translateY(-150%);
+}
+
+.hologram-input {
+    width: 100%;
+    height: 40px;
+    background: transparent;
+    border: 1px solid var(--quantum-blue);
+    margin-bottom: 20px;
+    animation: input-glow 2s infinite;
+}
+
 @keyframes core-spin {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
@@ -140,4 +161,25 @@ body {
     0% { top: -10%; opacity: 0.8; }
     50% { opacity: 0.2; }
     100% { top: 110%; opacity: 0.8; }
+}
+
+@keyframes input-glow {
+    0% { box-shadow: 0 0 5px var(--quantum-blue); }
+    50% { box-shadow: 0 0 20px var(--quantum-blue); }
+    100% { box-shadow: 0 0 5px var(--quantum-blue); }
+}
+
+@media (max-width: 768px) {
+    #mainTitle h1 {
+        font-size: 2rem;
+    }
+    
+    .manifest-text {
+        font-size: 1.5rem;
+    }
+    
+    .cyber-portal {
+        width: 80px;
+        height: 80px;
+    }
 }
