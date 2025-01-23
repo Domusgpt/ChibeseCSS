@@ -2,38 +2,61 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clear Seas Solutions | AI Architecture</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#00f3ff">
+    <title>CLEAR_SEAS_SOLUTIONS | Quantum AI Architects</title>
+    
+    <!-- Quantum Dependencies -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Exo+2:wght@300;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/postprocessing/EffectComposer.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/shaders/GlitchShader.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/parallax-js@3.1.0/dist/parallax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+    
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <canvas id="quantumCanvas"></canvas>
-    
-    <div id="mainTitle" class="cyber-glow">
-        <h1 data-text="CLEAR_SEAS_SOLUTIONS">CLEAR_SEAS_SOLUTIONS</h1>
-        <div class="scanline"></div>
+
+    <div id="realityStack" data-parallax="pointer">
+        <!-- Main Title Sequence -->
+        <section class="reality-layer active" data-depth="0.1">
+            <div class="title-singularity">
+                <h1 class="glitch-text" data-text="CLEAR_SEAS_SOLUTIONS">CLEAR_SEAS_SOLUTIONS</h1>
+                <div class="entropy-beam"></div>
+            </div>
+        </section>
+
+        <!-- About Simulation -->
+        <section class="reality-layer" data-depth="0.3">
+            <div class="hologram-portal">
+                <iframe src="https://www.youtube.com/embed/bxSvG2s8e-o" 
+                        class="hyperspace-frame"></iframe>
+            </div>
+        </section>
+
+        <!-- Service Grid -->
+        <section class="reality-layer" data-depth="0.5">
+            <div class="data-crystals">
+                <div class="crystal" style="background-image: url('assets/images/neon-grid.png')"></div>
+                <div class="crystal" style="background-image: url('assets/images/runway-bg.jpg')"></div>
+                <div class="crystal" style="background-image: url('assets/images/hex-pattern.png')"></div>
+            </div>
+        </section>
+
+        <!-- Contact Event Horizon -->
+        <section class="reality-layer" data-depth="0.7">
+            <form class="quantum-form" netlify>
+                <input type="text" name="name" class="neon-field" placeholder="[IDENTITY MATRIX]" required>
+                <input type="email" name="email" class="neon-field" placeholder="[TRANSMISSION FREQUENCY]" required>
+                <textarea name="message" class="neon-field" placeholder="[QUANTUM QUERY]" rows="4" required></textarea>
+                <button type="submit" class="transmit-pulse">INITIATE CONVERGENCE</button>
+            </form>
+        </section>
     </div>
 
-    <div class="quantum-manifest">
-        <p class="manifest-text">
-            WE NAVIGATE THE SPACE BETWEEN<br>
-            <span class="neon-magenta">CHAOS</span> AND 
-            <span class="quantum-blue">ORDER</span>,<br>
-            BUILDING BRIDGES ACROSS THE<br>
-            ARCHITECTURE OF POSSIBILITY
-        </p>
-    </div>
-
-    <div class="cyber-portal" id="consultPortal">
-        <div class="portal-core"></div>
-        <div class="portal-interface">
-            <div class="hologram-input"></div>
-        </div>
-    </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="scripts.js"></script>
 </body>
 </html>
