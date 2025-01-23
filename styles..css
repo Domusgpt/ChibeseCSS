@@ -1,0 +1,143 @@
+:root {
+    --quantum-blue: #00f3ff;
+    --neon-magenta: #ff00ff;
+    --cyber-void: #00010a;
+    --hazard-yellow: #fffc00;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow: hidden;
+    background: var(--cyber-void);
+    font-family: 'Orbitron', sans-serif;
+    touch-action: manipulation;
+    height: 100vh;
+}
+
+#quantumCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+.cyber-glow {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-shadow: 0 0 15px var(--quantum-blue),
+                 0 0 25px var(--neon-magenta);
+    z-index: 2;
+}
+
+#mainTitle h1 {
+    font-size: 4vw;
+    color: transparent;
+    background: linear-gradient(45deg, 
+        var(--quantum-blue) 25%, 
+        var(--neon-magenta) 75%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    text-align: center;
+    letter-spacing: 0.5em;
+    animation: titleGlitch 2.5s infinite alternate;
+}
+
+.scanline {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: var(--hazard-yellow);
+    animation: scan 4s linear infinite;
+    box-shadow: 0 0 10px var(--hazard-yellow);
+}
+
+.quantum-manifest {
+    position: absolute;
+    width: 60vw;
+    left: 20vw;
+    top: 30vh;
+    font-family: 'Exo 2', sans-serif;
+    color: white;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 1s;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.manifest-active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.manifest-text {
+    font-size: 2.5rem;
+    line-height: 1.4;
+    text-align: center;
+}
+
+.neon-magenta {
+    color: var(--neon-magenta);
+    text-shadow: 0 0 15px var(--neon-magenta);
+}
+
+.quantum-blue {
+    color: var(--quantum-blue);
+    text-shadow: 0 0 15px var(--quantum-blue);
+}
+
+.cyber-portal {
+    position: fixed;
+    bottom: 5vh;
+    right: 5vw;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, 
+        var(--quantum-blue) 0%, 
+        transparent 70%);
+    cursor: pointer;
+    animation: portal-pulse 2s infinite;
+    filter: drop-shadow(0 0 20px var(--quantum-blue));
+    transition: transform 0.3s;
+    z-index: 3;
+}
+
+.portal-core {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    animation: core-spin 4s linear infinite;
+}
+
+@keyframes core-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes portal-pulse {
+    0% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1); opacity: 0.8; }
+}
+
+@keyframes titleGlitch {
+    0% { transform: translate(2px, 1px); }
+    25% { transform: translate(-1px, -2px); }
+    50% { transform: translate(3px, -1px); }
+    100% { transform: translate(-2px, 1px); }
+}
+
+@keyframes scan {
+    0% { top: -10%; opacity: 0.8; }
+    50% { opacity: 0.2; }
+    100% { top: 110%; opacity: 0.8; }
+}
